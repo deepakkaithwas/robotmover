@@ -1,4 +1,5 @@
-const possibleDirections = ["NORTH", "EAST", "SOUTH", "WEST"];
+const { MESSAGES, ROBOT } = require("./constants");
+const possibleDirections = ROBOT.POSSIBLE_DIRECTION;
 const roomParameters = [5, 5];
 const robotPosition = [];
 let currDir = 0;
@@ -36,7 +37,7 @@ const move = () => {
     newX > roomParameters[0] - 1 ||
     newY > roomParameters[1] - 1
   ) {
-    console.log("robot can not not go outside the room");
+    console.log(MESSAGES.MOVE_OUT_ERROR);
     return false;
   }
   robotPosition[0] = newX;
@@ -46,7 +47,7 @@ const move = () => {
 
 const place = args => {
   if (!args || args.length < 3) {
-    console.log("please provide proper value to place robot");
+    console.log(MESSAGES.PLACE_ERROR);
     return false;
   }
   if (
@@ -60,12 +61,10 @@ const place = args => {
     robotPosition[1] = parseInt(args[1]);
     currDir = possibleDirections.indexOf(args[2].toUpperCase());
   } else {
-    console.log(
-      "arguments provided are not valid, please provide a valid argument"
-    );
+    console.log(MESSAGES.PLACE_ERROR);
     return false;
   }
-  console.log(`Robot is placed at ${args[0]} ${args[1]} facing ${args[2]}`);
+  console.log(MESSAGES.PLACED_SUCCESS(args));
   return true;
 };
 
@@ -75,7 +74,7 @@ const report = () => {
 
 const isPlaced = () => {
   if (robotPosition.length === 0) {
-    console.log("Please place the robot first.");
+    console.log(MESSAGES.ISPLACED_ERROR);
     return false;
   }
   return true;

@@ -1,7 +1,7 @@
 {
-  "name": "robot",
+  "name": "robotmover",
   "version": "1.0.0",
-  "description": "robot movement alogrithm",
+  "description": "robot movement algorithm",
   "main": "index.js",
   "scripts": {
     "test": "jest",

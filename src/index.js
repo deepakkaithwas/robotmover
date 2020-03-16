@@ -1,10 +1,11 @@
 const readline = require("readline");
 const { getMethod } = require("./utils");
+const { MESSAGES } = require("./constants");
 const { move, place, report, isPlaced, left, right } = require("./robot");
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: "ROBOT> "
+  prompt: MESSAGES.PROMPT
 });
 
 rl.prompt();
@@ -46,12 +47,12 @@ rl.on("line", line => {
         }
         break;
       default:
-        console.log(`Please provide a valid method '${line.trim()}'`);
+        console.log(MESSAGES.INCORRECT_COMMAND);
         break;
     }
   }
   rl.prompt();
 }).on("close", () => {
-  console.log("Have a great day!");
+  console.log(MESSAGES.APPLICATION_CLOSE);
   process.exit(0);
 });
